@@ -3,14 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - One-way platform
+  - BackGroundMountians
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BackGroundLayer
   - Water
   - UI
+  - Player
+  - One-way platform
+  - 
+  - wheel
   - 
   - 
   - 
@@ -23,11 +29,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -50,8 +52,14 @@ TagManager:
   - name: Ground
     uniqueID: 2735526109
     locked: 0
+  - name: One-way platform
+    uniqueID: 1266147183
+    locked: 0
   - name: Player
     uniqueID: 3762958777
+    locked: 0
+  - name: Water
+    uniqueID: 4020704271
     locked: 0
   m_RenderingLayers:
   - Default
