@@ -16,10 +16,7 @@ public abstract class CreaturePlatformInteraction : MonoBehaviour
     [Tooltip("Текущая платформа GameObject соприкосновения")]
     [SerializeField] protected GameObject currentPlatform;
     [Tooltip("Текущая платформа Collider2D соприкосновения")]
-    [SerializeField] protected Collider2D platformCollider;
-    [Tooltip("Позволяет сохранить Scale существу на платформе")]
-    //[SerializeField] protected Vector3 originalScale;
-
+    [SerializeField] protected Collider2D platformCollider;   
     protected abstract Transform GroundCheck { get; }
     protected abstract BoxCollider2D CreatureBoxCollider2D { get; }
     [Header("Debugging(назначаются автоматически)")]
@@ -66,8 +63,7 @@ public abstract class CreaturePlatformInteraction : MonoBehaviour
             {
                 isOnPlatform = true;
                 currentPlatform = platformRoot.gameObject;
-                transform.SetParent(platformRoot);
-                 
+                transform.SetParent(platformRoot);                 
                 debuggingSettings.currentParentGameObject = platformRoot.gameObject;
                 debuggingSettings.currentParentTransform = platformRoot.transform.parent;
             }
@@ -78,8 +74,7 @@ public abstract class CreaturePlatformInteraction : MonoBehaviour
             {
                 isOnPlatform = false;
                 currentPlatform = null;
-                transform.SetParent(null);
-                
+                transform.SetParent(null);                
                 debuggingSettings.currentParentGameObject = null;
                 debuggingSettings.currentParentTransform = null;
             }

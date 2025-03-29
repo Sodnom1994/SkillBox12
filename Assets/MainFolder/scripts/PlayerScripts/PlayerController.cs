@@ -4,22 +4,23 @@ public class PlayerController : MonoBehaviour
 {
     //Параметры скорости передвижения и силы прыжка Игрока
     [Header("Movement Settings")]
-    public float moveSpeed = 5.0f;
-    public float jumpForce = 10.0f;
+    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float jumpForce = 10.0f;
+    [SerializeField] private AnimationCurve movementCurve;
 
     //Для проверки что слой взаимодействия является "нужной" землей
-    [Header("Ground Check")]    
+    [Header("Ground Check")]
     public Transform groundCheck;
-    public LayerMask groundLayer;
-    public float groundCheckRadius = 0.2f;
-    
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool facingRight = true;
     private PlayerAnimatorController playerAnimatorController;
 
     void Start()
-    {       
+    {
         //Присваиваем для rb и playerAnimatorController <= RigidBody2D и playerAnimatorController из GameObject PlayerParametrs
         rb = GetComponent<Rigidbody2D>();
         playerAnimatorController = GetComponent<PlayerAnimatorController>();
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Проверь присваивание компонентов для PlayerController!");
         }
-        
+
     }
     void Update()
     {
@@ -36,8 +37,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         //Управление перемещением персонажа
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        if(isGrounded)
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (isGrounded)
         {
             Move(horizontalInput);
         }
@@ -51,14 +53,14 @@ public class PlayerController : MonoBehaviour
         #region Управление анимациями игрока
 
         //Переключение анимации на бег если horizontalInput !=0
-        playerAnimatorController.UpdateRunningState(horizontalInput != 0);
+        playerAnimatorController.UpdateRunningState(Mathf.Abs(horizontalInput) > 0.2);
 
         //Поворт спрайта в направлении движения
         if (isGrounded && ((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)))
         {
             facingRight = !facingRight;
             playerAnimatorController.FlipSprite(facingRight);
-            
+
         }
         //Переключение bool "isJumping" для аниматора если персонаж не на земле
         playerAnimatorController.UpdateJumpingState(!isGrounded);
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
     #region Методы для передвижения игрока
     private void Move(float horizontalInput)
     {
-        Vector2 movement = new(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        Vector2 movement = new(movementCurve.Evaluate(horizontalInput*moveSpeed), rb.linearVelocity.y);
 
         rb.linearVelocity = movement;
     }
