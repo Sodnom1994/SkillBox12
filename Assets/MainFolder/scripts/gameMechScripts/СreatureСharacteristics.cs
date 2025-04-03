@@ -29,7 +29,7 @@ public abstract class СreatureСharacteristics : MonoBehaviour
     {
         currentHealth -= damage;
         HealthBar.fillAmount = currentHealth / maxHealth;
-        CheckisAlive();
+        
     }
     public virtual void CheckisAlive()
     {
