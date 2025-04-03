@@ -53,34 +53,34 @@ public abstract class CreaturePlatformInteraction : MonoBehaviour
     }
     #endregion   
 
-    #region Удочерение объекта при нахождении на платформе
-    public virtual void AdoptionCreatureOnPlatform()
-    {
-        if (platformCollider != null)
-        {
-            Transform platformRoot = platformCollider.transform;
-            if (!isOnPlatform)
-            {
-                isOnPlatform = true;
-                currentPlatform = platformRoot.gameObject;
-                transform.SetParent(platformRoot);                 
-                debuggingSettings.currentParentGameObject = platformRoot.gameObject;
-                debuggingSettings.currentParentTransform = platformRoot.transform.parent;
-            }
-        }
-        else
-        {
-            if (isOnPlatform)
-            {
-                isOnPlatform = false;
-                currentPlatform = null;
-                transform.SetParent(null);                
-                debuggingSettings.currentParentGameObject = null;
-                debuggingSettings.currentParentTransform = null;
-            }
-        }
-    }
-    #endregion
+    //#region Удочерение объекта при нахождении на платформе
+    //public virtual void AdoptionCreatureOnPlatform()
+    //{
+    //    if (platformCollider != null)
+    //    {
+    //        Transform platformRoot = platformCollider.transform;
+    //        if (!isOnPlatform)
+    //        {
+    //            isOnPlatform = true;
+    //            currentPlatform = platformRoot.gameObject;
+    //            transform.SetParent(platformRoot);                 
+    //            debuggingSettings.currentParentGameObject = platformRoot.gameObject;
+    //            debuggingSettings.currentParentTransform = platformRoot.transform.parent;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (isOnPlatform)
+    //        {
+    //            isOnPlatform = false;
+    //            currentPlatform = null;
+    //            transform.SetParent(null);                
+    //            debuggingSettings.currentParentGameObject = null;
+    //            debuggingSettings.currentParentTransform = null;
+    //        }
+    //    }
+    //}
+    //#endregion
     // Защищённый метод для поиска groundCheck
     protected GameObject FindGroundCheck()
     {

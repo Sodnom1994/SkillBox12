@@ -177,7 +177,7 @@ TextureImporter:
         serializedVersion: 2
         x: 14
         y: 0
-        width: 89
+        width: 54
         height: 72
       alignment: 9
       pivot: {x: 0.30108702, y: 0.58541036}
@@ -215,6 +215,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Attack 2_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 11
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028891151fd4fd540bc8beaa5c0af353
+      internalID: -515240436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -233,6 +255,7 @@ TextureImporter:
       Attack 2_1: -4719016525697344907
       Attack 2_2: -8162710234889106271
       Attack 2_3: -3928759291754492119
+      Attack 2_4: -515240436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

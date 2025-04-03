@@ -6,6 +6,7 @@ TagManager:
   tags:
   - One-way platform
   - BackGroundMountians
+  - Enemy
   layers:
   - Default
   - TransparentFX

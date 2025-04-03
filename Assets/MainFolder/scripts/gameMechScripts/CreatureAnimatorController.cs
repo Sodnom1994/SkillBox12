@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Splines;
 
 abstract public class CreatureAnimatorController : MonoBehaviour
 {
@@ -27,6 +28,20 @@ abstract public class CreatureAnimatorController : MonoBehaviour
         if (ÑreatureAnimator != null)
         {
             ÑreatureAnimator.SetBool("isJumping", isJumping);
+        }
+    }
+    public virtual void UpdateAttckState()
+    {
+        if (ÑreatureAnimator != null)
+        {
+            ÑreatureAnimator.SetTrigger("isAttacking");
+        }
+    }
+    public virtual void UpdateDeathBool(bool isAlive)
+    {
+        if(ÑreatureAnimator != null)
+        {
+            ÑreatureAnimator.SetBool("isAlive", !isAlive);
         }
     }
 }

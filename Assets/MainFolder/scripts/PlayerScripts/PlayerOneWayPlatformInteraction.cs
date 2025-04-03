@@ -17,8 +17,7 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
     }
     protected override void Update()
     {
-        base.Update();
-        AdoptionPlayerOnPlatform();
+        base.Update();        
         PassThroughOnKeyDown();
     }
     #region Присвоение именно той платформы которая под ногами игрока
@@ -53,7 +52,7 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
     }
     private IEnumerator DisableCollision()
     {
-        //Debug.Log("2");
+        //это усложнение перебирает все типы колайдеров box circle capsule итд
         Collider2D[] platformColliders = currentPlatform.GetComponentsInChildren<Collider2D>();
         foreach (Collider2D col in platformColliders)
         {
@@ -75,11 +74,5 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
     {
         return ((1 << obj.layer) & layerMask) != 0;
     }
-    #endregion
-    #region Удочерение объекта игрока при нахождении на платформе
-    private void AdoptionPlayerOnPlatform()
-    {
-        base.AdoptionCreatureOnPlatform();
-    }
-    #endregion
+    #endregion       
 }
