@@ -5,40 +5,31 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
 {
     [Header("Adoption Player Setting(назначаются автоматически)")]
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private BoxCollider2D playertBoxCollider2D;
+    [SerializeField] private CapsuleCollider2D playerCapsuleCollider2D;
 
     protected override Transform GroundCheck => playerController.groundCheck;
-    protected override BoxCollider2D CreatureBoxCollider2D => playertBoxCollider2D;
+    protected override CapsuleCollider2D CapsuleCollider2D => playerCapsuleCollider2D;
     protected override void Awake()
     {
         playerController = GetComponent<PlayerController>();
-        playertBoxCollider2D = GetComponent<BoxCollider2D>();
+        playerCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         
     }
     protected override void Update()
     {
-        base.Update();        
+        if (GroundCheck != null)
+        {
+            platformCollider = Physics2D.OverlapCircle(GroundCheck.transform.position, groundCheckRadius, platformLayer);
+
+        }
+        else
+        {
+            transform.parent.SetParent(null);
+            isOnPlatform = false;
+        }
         PassThroughOnKeyDown();
     }
-    #region Присвоение именно той платформы которая под ногами игрока
-    public override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (platformCollider != null && platformCollider.gameObject == collision.gameObject)
-        {
-            currentPlatform = collision.gameObject;
-        }
-    }
-    public override void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("One-way platform"))
-        {
-            if (platformCollider == null || platformCollider.gameObject != collision.gameObject)
-            {
-                currentPlatform = null;
-            }
-        }
-    }
-    #endregion
+
     #region Методы для прохождение сквозь платформу при нажатии Down
     private void PassThroughOnKeyDown()
     {
@@ -50,6 +41,23 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
             }
         }
     }
+    public override void OnCollisionStay2D(Collision2D collision)
+    {
+        if (platformCollider != null && platformCollider.gameObject == collision.gameObject)
+        {
+            isOnPlatform = true;
+            collision.gameObject.TryGetComponent<Transform>(out var NewParentTransform);
+            currentPlatform = collision.gameObject;
+            if (NewParentTransform != null)
+            {
+                transform.parent = NewParentTransform;
+                
+                debuggingSettings.currentParentGameObject = collision.gameObject;
+                debuggingSettings.currentParentTransform = collision.transform.parent;
+            }
+
+        }
+    }
     private IEnumerator DisableCollision()
     {
         //это усложнение перебирает все типы колайдеров box circle capsule итд
@@ -58,7 +66,7 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
         {
             if (IsInLayerMask(col.gameObject, platformLayer))
             {
-                Physics2D.IgnoreCollision(playertBoxCollider2D, col, true);
+                Physics2D.IgnoreCollision(playerCapsuleCollider2D, col, true);
             }
         }
         yield return new WaitForSeconds(0.4f);
@@ -66,7 +74,7 @@ public class PlayerOneWayPlatformInteraction : CreaturePlatformInteraction
         {
             if (IsInLayerMask(col.gameObject, platformLayer))
             {
-                Physics2D.IgnoreCollision(playertBoxCollider2D, col, false);
+                Physics2D.IgnoreCollision(playerCapsuleCollider2D, col, false);
             }
         }
     }

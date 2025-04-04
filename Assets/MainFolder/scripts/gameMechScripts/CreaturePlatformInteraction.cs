@@ -16,15 +16,15 @@ public abstract class CreaturePlatformInteraction : MonoBehaviour
     [Tooltip("Текущая платформа GameObject соприкосновения")]
     [SerializeField] protected GameObject currentPlatform;
     [Tooltip("Текущая платформа Collider2D соприкосновения")]
-    [SerializeField] protected Collider2D platformCollider;   
+    [SerializeField] protected Collider2D platformCollider;
     protected abstract Transform GroundCheck { get; }
-    protected abstract BoxCollider2D CreatureBoxCollider2D { get; }
+    protected abstract CapsuleCollider2D CapsuleCollider2D { get; }
     [Header("Debugging(назначаются автоматически)")]
     [SerializeField] protected DebuggingSettings debuggingSettings;
 
     protected virtual void Awake()
     {
-        
+
     }
     protected virtual void Update()
     {
@@ -32,26 +32,33 @@ public abstract class CreaturePlatformInteraction : MonoBehaviour
         {
             platformCollider = Physics2D.OverlapCircle(GroundCheck.transform.position, groundCheckRadius, platformLayer);
         }
-    }
-    #region Коллизии с платформами
-    public virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (platformCollider != null && platformCollider.gameObject == collision.gameObject)
+        else
         {
-            currentPlatform = collision.gameObject;
-        }
-    }
-    public virtual void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("One-way platform"))
-        {
-            if (platformCollider == null || platformCollider.gameObject != collision.gameObject)
+            if (transform.CompareTag("Player"))
             {
-                currentPlatform = null;
+                transform.parent.SetParent(null);
             }
         }
     }
-    #endregion   
+    #region Коллизии с платформами
+    public virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        if (platformCollider != null && platformCollider.gameObject == collision.gameObject)
+        {
+            isOnPlatform = true;
+            collision.gameObject.TryGetComponent<Transform>(out var NewParentTransform);
+            currentPlatform = collision.gameObject;
+            if (NewParentTransform != null)
+            {
+                transform.parent = NewParentTransform;
+
+                debuggingSettings.currentParentGameObject = collision.gameObject;
+                debuggingSettings.currentParentTransform = collision.transform.parent;
+            }            
+            
+        }
+    }
+    #endregion
 
     //#region Удочерение объекта при нахождении на платформе
     //public virtual void AdoptionCreatureOnPlatform()

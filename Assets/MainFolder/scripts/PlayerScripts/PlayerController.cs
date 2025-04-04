@@ -55,9 +55,14 @@ public class PlayerController : MonoBehaviour
             {
                 Move(horizontalInput);
             }
+            else
+            {
+                transform.SetParent(null);
+            }
             //”правление прыжком персонажа
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
+                
                 Jump();
             }
             #endregion
