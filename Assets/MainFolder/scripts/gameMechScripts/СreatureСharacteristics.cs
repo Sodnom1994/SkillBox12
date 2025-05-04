@@ -9,7 +9,11 @@ public abstract class СreatureСharacteristics : MonoBehaviour
     [SerializeField] protected float currentHealth;
     public virtual Image HealthBar { get; }
     protected bool isAlive;
-
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        protected set { currentHealth = value; }
+    }
     public bool IsAlive
     {
         get { return isAlive; } // Доступно для чтения

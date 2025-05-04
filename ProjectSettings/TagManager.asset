@@ -8,6 +8,7 @@ TagManager:
   - BackGroundMountians
   - Enemy
   - GroundCheck
+  - EnemyVision
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - One-way platform
   - Objects for interaction
   - wheel
-  - 
-  - 
+  - enemy
+  - post
   - 
   - 
   - 

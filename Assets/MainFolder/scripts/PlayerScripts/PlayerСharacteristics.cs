@@ -5,13 +5,15 @@ using UnityEngine.UI;
 public class PlayerСharacteristics : СreatureСharacteristics
 {
     private PlayerAnimatorController playerAnimatorController;
+    private Camera playerCamera;
     [SerializeField] private GameObject deathPanel;
     [SerializeField] private Image playerHealthBar;
+
     public override Image HealthBar => playerHealthBar; 
     private void Start()
     {
         playerAnimatorController = GetComponent<PlayerAnimatorController>();
-
+        playerCamera =GetComponentInChildren<Camera>();
     }
     public override void Update()
     {
@@ -32,9 +34,11 @@ public class PlayerСharacteristics : СreatureСharacteristics
     }
     private void AfterDeath()
     {
-        playerAnimatorController.UpdateDeathBool(!isAlive);
-        deathPanel.SetActive(true);
-        Destroy(gameObject, 10f);
+        playerCamera.transform.parent = null;
+
+        playerAnimatorController.UpdateDeathBool(isAlive);
+        deathPanel.SetActive(true);        
+        Destroy(gameObject, 5f);
         if (gameObject == null)
         {
             Time.timeScale = 0;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
-public class PlayerAnimatorController : CreatureAnimatorController
+public sealed class PlayerAnimatorController : CreatureAnimatorController
 {
     private Animator playerAnimator;
     private SpriteRenderer playerSprite;

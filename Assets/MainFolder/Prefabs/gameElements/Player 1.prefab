@@ -72,6 +72,7 @@ Transform:
   - {fileID: 857627060863566971}
   - {fileID: 7556062563936686317}
   - {fileID: 4731251065651107915}
+  - {fileID: 6013025294476363814}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &81026230286617225
@@ -253,6 +254,8 @@ MonoBehaviour:
   facingRight: 1
   playerAnimatorController: {fileID: 0}
   "player\u0421haracteristics": {fileID: 0}
+  viewLight: {fileID: 0}
+  playerInput: {fileID: 0}
 --- !u!114 &1872442384171288204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +333,102 @@ MonoBehaviour:
     currentParentTransform: {fileID: 0}
   playerController: {fileID: 0}
   playerCapsuleCollider2D: {fileID: 0}
+--- !u!1 &5637827300952892568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6013025294476363814}
+  - component: {fileID: 4367568122499494974}
+  m_Layer: 6
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6013025294476363814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637827300952892568}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.6676669, w: 0.74446017}
+  m_LocalPosition: {x: -0.09, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3831785385362153424}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 167.739}
+--- !u!114 &4367568122499494974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637827300952892568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 2
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.502
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.23
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 00000000f739b9f2bb1e6711ddd00ca36fdf774bb9314ae00f14a7ef
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: -0.060850024, y: 1.1624, z: 0}
+    m_Extent: {x: 1.13035, y: 1.8025, z: 0}
+  m_PointLightInnerAngle: 10.63
+  m_PointLightOuterAngle: 70.94
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 3.5255547
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.55
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.17361772, y: -0.08921575, z: 0}
+  - {x: -0.007630718, y: -0.074849315, z: 0}
+  - {x: 0.23693594, y: 0.17386745, z: 0}
+  - {x: 0.29773483, y: 0.5626283, z: 0}
+  - {x: 0.43172285, y: 1.20087, z: 0}
+  - {x: 0.520277, y: 1.8440682, z: 0}
+  - {x: 0.44460413, y: 2.3304715, z: 0}
+  - {x: 0.012390226, y: 2.4144003, z: 0}
+  - {x: -0.5515007, y: 2.218448, z: 0}
+  - {x: -0.5929694, y: 1.7540172, z: 0}
+  - {x: -0.6456715, y: 1.3551782, z: 0}
+  - {x: -0.6056866, y: 1.0473756, z: 0}
+  - {x: -0.57677084, y: 0.72238994, z: 0}
+  - {x: -0.55595237, y: 0.40748236, z: 0}
+  - {x: -0.4790732, y: 0.20079109, z: 0}
+  - {x: -0.3109296, y: 0.04053281, z: 0}
 --- !u!1 &7584130098027553436
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +441,7 @@ GameObject:
   - component: {fileID: 2939574939857986386}
   - component: {fileID: 6667216297996419875}
   m_Layer: 6
-  m_Name: CinemachineCamera
+  m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,11 +633,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -10
+  near clip plane: 0.01
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 1.88
+  orthographic size: 1.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

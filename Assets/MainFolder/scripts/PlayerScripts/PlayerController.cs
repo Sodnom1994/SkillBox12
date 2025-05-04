@@ -1,5 +1,8 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,15 +30,18 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     [SerializeField] private PlayerAnimatorController playerAnimatorController;
     [SerializeField] private PlayerСharacteristics playerСharacteristics;
-
-
+    //добавляем фонарик
+    [Header("Light2D")]
+    [SerializeField] private Light2D viewLight;
+    
     void Start()
     {
-
+        
         //Присваиваем для rb и playerAnimatorController <= RigidBody2D и playerAnimatorController из GameObject PlayerParametrs
         playerСharacteristics = GetComponent<PlayerСharacteristics>();
         rb = GetComponent<Rigidbody2D>();
         playerAnimatorController = GetComponent<PlayerAnimatorController>();
+        viewLight = GetComponentInChildren<Light2D>();
         if (rb == null || playerAnimatorController == null)
         {
             Debug.LogError("Проверь присваивание компонентов для PlayerController!");
@@ -62,7 +68,7 @@ public class PlayerController : MonoBehaviour
             //Управление прыжком персонажа
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                
+
                 Jump();
             }
             #endregion
@@ -75,23 +81,35 @@ public class PlayerController : MonoBehaviour
             }
             #endregion
             #region Управление анимациями игрока
-
             //Переключение анимации на бег если horizontalInput !=0
             playerAnimatorController.UpdateRunningState(Mathf.Abs(horizontalInput) > 0.2);
-
+            //добавить проверку на подземный мир
             //Поворт спрайта в направлении движения
+
             if (isGrounded && ((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)))
             {
                 facingRight = !facingRight;
+                if (SceneManager.GetActiveScene().buildIndex > 0)
+                {
+                    Debug.Log($"SceneManager.GetActiveScene().buildIndex = {SceneManager.GetActiveScene().buildIndex}");
+                    viewLight.gameObject.SetActive(true);
+                    if (viewLight != null)
+                    {
+                        viewLight.transform.eulerAngles = facingRight ? new Vector3(0, 0, -90f) : new Vector3(0, 0, 90f);
+                    }
+                }
+                else if (viewLight !=null)
+                {
+                    viewLight.gameObject.SetActive(false);
+                }
                 playerAnimatorController.FlipSprite(facingRight);
             }
             //Переключение bool "isJumping" для аниматора если персонаж не на земле
             playerAnimatorController.UpdateJumpingState(!isGrounded);
             #endregion
+
         }
-
         playerСharacteristics.Update();
-
     }
     #region Методы для передвижения игрока
     private void Move(float horizontalInput)
@@ -114,6 +132,9 @@ public class PlayerController : MonoBehaviour
             projectileScript.SetDirection(direction);
         }
     }
+    #region Методы для лишения и восстановления Игрока управлением персонажем
+    
+    #endregion 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

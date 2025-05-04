@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Large Spruce TreeNIGHT
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 1655529462, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -824640746, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 223505069, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -1389881348, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 389662675, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -598469548, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -1186566989, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -1908669651, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 1732056900, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -113609252, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 599039869, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -1921722554, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -792056635, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -1908567475, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 1967784906, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 1088863739, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 2010677185, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -1941652576, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -580030862, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -102578365, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -2090742479, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 598144796, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 716607086, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: 1669256403, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  - {fileID: -36287185, guid: 797cfa2ac7725ee40952d790ea947821, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 7
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

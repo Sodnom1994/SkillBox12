@@ -21,7 +21,7 @@ abstract public class CreatureAnimatorController : MonoBehaviour
     }
     public virtual void FlipSprite(bool isFacingRight)
     {
-        
+        CreatureSprite.flipX = !CreatureSprite.flipX;
     }
     public virtual void UpdateJumpingState(bool isJumping)
     {
@@ -41,7 +41,7 @@ abstract public class CreatureAnimatorController : MonoBehaviour
     {
         if(ÑreatureAnimator != null)
         {
-            ÑreatureAnimator.SetBool("isAlive", !isAlive);
+            ÑreatureAnimator.SetBool("isAlive", isAlive);
         }
     }
 }
