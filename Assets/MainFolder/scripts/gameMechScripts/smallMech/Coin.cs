@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[RequireComponent (typeof(CircleCollider2D))]
 public class Coin : MonoBehaviour, ICollectable
 {
     public void Collect()

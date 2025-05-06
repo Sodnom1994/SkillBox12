@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[RequireComponent(typeof(BoxCollider2D))]   
 public class Chest : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject coinPrefab;
