@@ -19,9 +19,10 @@ public abstract class СreatureСharacteristics : MonoBehaviour
         get { return isAlive; } // Доступно для чтения
         protected set { isAlive = value; } // Доступно только для наследников
     }
-    public void Awake()
+    public virtual void Awake()
     {
         currentHealth = maxHealth;
+        HealthBar.fillAmount = currentHealth / maxHealth;
         isAlive = true;
         
     }

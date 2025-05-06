@@ -166,7 +166,7 @@ public class EnemyCharacteristics : СreatureСharacteristics
         }
         else if (viewDirection < 0 && facingRight)
         {
-            Debug.Log("!");
+            //Debug.Log("!");
             visionCollider.transform.localPosition = new(-0.052f, 0.5f);
             visionCollider.transform.eulerAngles = new(0, 0, -180f);
         }
