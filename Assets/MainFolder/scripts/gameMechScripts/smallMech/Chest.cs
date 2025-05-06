@@ -1,30 +1,52 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
-[RequireComponent(typeof(BoxCollider2D))]   
+[RequireComponent(typeof(BoxCollider2D))]
 public class Chest : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private GameObject potionPrefab;
     [SerializeField] private Transform dropPoint;
     [SerializeField] private Animator animator;
-    private bool isAnimatorSet => animator != null;
+    [SerializeField] private int numberOfСoins = 5;
+    [SerializeField] private bool awardReceived = false;
+    private bool IsAnimatorSet => animator != null;
     public void Interact()
     {
-        if (isAnimatorSet)
+        if(!awardReceived)
         {
-            animator.SetTrigger("isOpen");
+            if (IsAnimatorSet)
+            {
+                animator.SetTrigger("isOpen");
+            }
+            Debug.Log("Сундук открылся");
+            StartCoroutine(OpeningChest());
+            
+            awardReceived = true;
         }
-        Debug.Log("Сундук открылся");
+
+    }
+    private void CoinRain()
+    {
         if (coinPrefab != null && dropPoint != null)
         {
-            Instantiate(coinPrefab, dropPoint.position, Quaternion.identity);
+            for (int i = 0; i < numberOfСoins; i++)
+            {
+                Instantiate(coinPrefab, dropPoint.position, Quaternion.identity);
+            }
         }
-        StartCoroutine(CloseChest());
-
     }
     IEnumerator CloseChest()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         animator.SetTrigger("isClose");
-    }    
+    }
+    IEnumerator OpeningChest()
+    {
+        yield return new WaitForSeconds(0.4f);
+        CoinRain();
+        StartCoroutine(CloseChest());
+    }
+
 }
 

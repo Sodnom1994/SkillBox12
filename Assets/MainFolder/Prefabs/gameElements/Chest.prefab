@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5284642778055192399}
   - component: {fileID: 8705891820057519400}
   - component: {fileID: 8375618651141300054}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8443229524248257080, guid: 77884691b20fd4e4fa317b0f357cc4c6, type: 3}
   dropPoint: {fileID: 7961261984587641966}
+  animator: {fileID: 0}
 --- !u!212 &8705891820057519400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7961261984587641966}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: ChestDropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

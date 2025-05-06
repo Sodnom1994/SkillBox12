@@ -33,10 +33,10 @@ public class PlayerController : MonoBehaviour
     //добавляем фонарик
     [Header("Light2D")]
     [SerializeField] private Light2D viewLight;
-    
+
     void Start()
     {
-        
+
         //Присваиваем для rb и playerAnimatorController <= RigidBody2D и playerAnimatorController из GameObject PlayerParametrs
         playerСharacteristics = GetComponent<PlayerСharacteristics>();
         rb = GetComponent<Rigidbody2D>();
@@ -98,11 +98,15 @@ public class PlayerController : MonoBehaviour
                         viewLight.transform.eulerAngles = facingRight ? new Vector3(0, 0, -90f) : new Vector3(0, 0, 90f);
                     }
                 }
-                else if (viewLight !=null)
+                else if (viewLight != null)
                 {
                     viewLight.gameObject.SetActive(false);
                 }
                 playerAnimatorController.FlipSprite(facingRight);
+                if (TryGetComponent<PlayerInteract>(out var playerInteract))
+                {
+                    playerInteract.facingRight = facingRight;
+                }
             }
             //Переключение bool "isJumping" для аниматора если персонаж не на земле
             playerAnimatorController.UpdateJumpingState(!isGrounded);
@@ -133,8 +137,8 @@ public class PlayerController : MonoBehaviour
         }
     }
     #region Методы для лишения и восстановления Игрока управлением персонажем
-    
-    #endregion 
+
+    #endregion
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

@@ -6,12 +6,16 @@ public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private KeyCode interactKey = KeyCode.E;
     [SerializeField] private float interactRange = 5.0f;
+    public bool facingRight =true;
+
+
     private void Update()
     {
+        Vector2 direction = facingRight ? Vector2.right : Vector2.left;
         if (Input.GetKeyDown(interactKey))
         {
             Debug.Log("Plyer trying interact");
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * (transform.localScale.x > 0 ? 1 : -1), interactRange);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, interactRange);
             if (hit.collider != null)
             {
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
@@ -25,10 +29,11 @@ public class PlayerInteract : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        Vector2 direction = facingRight ? Vector2.right : Vector2.left;
         if (Input.GetKey(KeyCode.E))
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, Vector2.right * interactRange);
+            Gizmos.DrawRay(transform.position, direction * interactRange);
         }
     }
 }
