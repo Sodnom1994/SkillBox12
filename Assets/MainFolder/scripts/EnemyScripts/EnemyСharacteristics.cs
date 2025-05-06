@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(EnemyAnimatorController))]
-public class EnemyCharacteristics : СreatureСharacteristics
+public class EnemyCharacteristics : СreatureСharacteristics, IDropable
 {
     [SerializeField] private EnemyAnimatorController enemyAnimatorController;
     public PolygonCollider2D visionCollider;
@@ -26,14 +26,19 @@ public class EnemyCharacteristics : СreatureСharacteristics
     public bool isRunning = false;
     public Image enemyHealthBar;
     public Rigidbody2D rb;
+    [Space]
+    [Header("Выпадение предметов")]
+    [SerializeField] private GameObject[] loot;
+    [SerializeField] private Transform dropPosition;
+
 
     public override Image HealthBar => enemyHealthBar;
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log($"rb = {rb.name}");
+        //Debug.Log($"rb = {rb.name}");
         enemyAnimatorController = GetComponent<EnemyAnimatorController>();
-        Debug.Log($"enemyAnimatorController = {enemyAnimatorController}");
+        //Debug.Log($"enemyAnimatorController = {enemyAnimatorController}");
         visionCollider = GetComponentInChildren<PolygonCollider2D>();
         Image[] images = GetComponentsInChildren<Image>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -77,6 +82,30 @@ public class EnemyCharacteristics : СreatureСharacteristics
             Destroy(gameObject, 3f);
         }
     }
+    #region Выпадение предметов из врага
+    public void DropLoot()
+    {
+        if(loot !=  null && loot.Length != 0)
+        {
+            int randomIndex  = Random.Range(0, loot.Length);
+            GameObject lootPrefab = loot[randomIndex];
+            if (lootPrefab != null)
+            {
+                Instantiate(lootPrefab, dropPosition.position, Quaternion.identity);
+                Debug.Log($"Выпало: {lootPrefab.name}");
+            }
+        }
+        else
+        {
+            Debug.Log("Нет лута для выпадения");
+        }
+    }
+    private void OnDestroy()
+    {
+        if (!Application.isPlaying) return;
+        DropLoot();
+    }
+    #endregion
 
     #region Урон при соприкосновении игрока с врагом
     private void OnCollisionEnter2D(Collision2D collision)

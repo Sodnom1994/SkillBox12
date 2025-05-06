@@ -14,7 +14,7 @@ public class PlayerInteract : MonoBehaviour
         Vector2 direction = facingRight ? Vector2.right : Vector2.left;
         if (Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Plyer trying interact");
+            //Debug.Log("Plyer trying interact");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, interactRange);
             if (hit.collider != null)
             {

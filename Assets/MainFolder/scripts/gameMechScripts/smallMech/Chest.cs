@@ -13,15 +13,10 @@ public class Chest : MonoBehaviour, IInteractable
     private bool IsAnimatorSet => animator != null;
     public void Interact()
     {
-        if(!awardReceived)
+        if (!awardReceived && IsAnimatorSet)
         {
-            if (IsAnimatorSet)
-            {
-                animator.SetTrigger("isOpen");
-            }
-            Debug.Log("Сундук открылся");
+            //Debug.Log("Сундук открылся");
             StartCoroutine(OpeningChest());
-            
             awardReceived = true;
         }
 
@@ -36,6 +31,13 @@ public class Chest : MonoBehaviour, IInteractable
             }
         }
     }
+    private void PotionDrop()
+    {
+        if (potionPrefab != null && dropPoint != null)
+        {
+            Instantiate(potionPrefab, dropPoint.position, Quaternion.identity);
+        }
+    }
     IEnumerator CloseChest()
     {
         yield return new WaitForSeconds(4f);
@@ -43,8 +45,10 @@ public class Chest : MonoBehaviour, IInteractable
     }
     IEnumerator OpeningChest()
     {
-        yield return new WaitForSeconds(0.4f);
+        animator.SetTrigger("isOpen");
+        yield return new WaitForSeconds(1.2f);
         CoinRain();
+        PotionDrop();
         StartCoroutine(CloseChest());
     }
 

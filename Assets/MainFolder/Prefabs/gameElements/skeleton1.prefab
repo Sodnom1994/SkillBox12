@@ -340,6 +340,37 @@ PolygonCollider2D:
       - {x: 0.49364185, y: -0.29473734}
       - {x: 1.2475891, y: -0.31263733}
   m_UseDelaunayMesh: 0
+--- !u!1 &7800412963052214624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7016532427255897537}
+  m_Layer: 0
+  m_Name: DropPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7016532427255897537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800412963052214624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.223, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2332567528757083927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8554159255556538352
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +478,7 @@ Transform:
   - {fileID: 7612301367612105037}
   - {fileID: 877143411239642191}
   - {fileID: 8712125010384851828}
+  - {fileID: 7016532427255897537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4167868260024596320
@@ -463,6 +495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  enemyAnimatorController: {fileID: 0}
+  visionCollider: {fileID: 0}
   playerTranform: {fileID: 0}
   patrolDistance: 5
   patrolSpeed: 0.3
@@ -474,7 +508,13 @@ MonoBehaviour:
   nextAttackTime: 0
   currentTransformX: 0
   facingRight: 0
+  isRunning: 0
   enemyHealthBar: {fileID: 0}
+  rb: {fileID: 0}
+  loot:
+  - {fileID: 8443229524248257080, guid: 77884691b20fd4e4fa317b0f357cc4c6, type: 3}
+  - {fileID: 4697013705237995739, guid: 0793c152c00830b44aeffe5131ff15cc, type: 3}
+  dropPosition: {fileID: 7016532427255897537}
 --- !u!212 &4252240285916213602
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -564,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b82b44ef32f3aa46b4b0429fa479187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resurrectionPlay: 0
 --- !u!50 &629046075086420818
 Rigidbody2D:
   serializedVersion: 5

@@ -52,7 +52,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -95,8 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8443229524248257080, guid: 77884691b20fd4e4fa317b0f357cc4c6, type: 3}
+  potionPrefab: {fileID: 4697013705237995739, guid: 0793c152c00830b44aeffe5131ff15cc, type: 3}
   dropPoint: {fileID: 7961261984587641966}
-  animator: {fileID: 0}
+  animator: {fileID: 8375618651141300054}
+  "numberOf\u0421oins": 5
+  awardReceived: 0
 --- !u!212 &8705891820057519400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -199,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 9160082143885599811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.916, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
