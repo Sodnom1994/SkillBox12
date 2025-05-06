@@ -91,7 +91,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: CloseChest
+    m_ConditionEvent: isClose
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4296354857215763558}
@@ -138,13 +138,13 @@ AnimatorController:
   m_Name: TX Chest Animation Golden 0
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: OpenChest
+  - m_Name: isOpen
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: CloseChest
+  - m_Name: isClose
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -172,7 +172,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OpenChest
+    m_ConditionEvent: isOpen
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9203817001315394896}
