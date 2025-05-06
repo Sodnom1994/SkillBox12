@@ -6,14 +6,7 @@ public class SceneSwapScript : MonoBehaviour
 {
     public Transform SceneBox1;
     public Transform SceneBox2;
-    private void Start()
-    {     
-        //if (SceneBox1 == null)
-        //{
-
-        //    //Debug.LogWarning("Не удалось найти один или оба объекта SceneBox!");
-        //}
-    }
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

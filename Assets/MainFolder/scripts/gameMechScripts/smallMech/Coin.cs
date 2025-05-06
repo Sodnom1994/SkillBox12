@@ -14,6 +14,8 @@ public class Coin : MonoBehaviour, ICollectable
     }
     private void Start()
     {
+        AutoDestroy();
+        #region Физика разлета монеты и её анимация
         if (coinRigidbody != null)
         {
             Vector2 randomUpSemiSphereDirection = new(
@@ -40,6 +42,7 @@ public class Coin : MonoBehaviour, ICollectable
             Debug.LogWarning("Аниматор монеты ненайден");
         }
     }
+    #endregion
     public void Collect()
     {
         //Debug.Log("Монетка поднята");
@@ -64,5 +67,9 @@ public class Coin : MonoBehaviour, ICollectable
             }
         }
         return 0f;
+    }
+    public void AutoDestroy()
+    {
+        Destroy(gameObject,5f);
     }
 }

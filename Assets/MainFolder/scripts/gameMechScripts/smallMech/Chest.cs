@@ -13,11 +13,15 @@ public class Chest : MonoBehaviour, IInteractable
     private bool IsAnimatorSet => animator != null;
     public void Interact()
     {
-        if (!awardReceived && IsAnimatorSet)
+        if (!awardReceived )
         {
-            //Debug.Log("Сундук открылся");
-            StartCoroutine(OpeningChest());
-            awardReceived = true;
+            if (IsAnimatorSet)
+            {
+                Debug.Log("Сундук открылся");
+                StartCoroutine(OpeningChest());
+                awardReceived = true;
+            }
+           
         }
 
     }

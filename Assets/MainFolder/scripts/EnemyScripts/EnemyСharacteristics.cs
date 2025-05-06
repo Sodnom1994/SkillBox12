@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(EnemyAnimatorController))]
 public class EnemyCharacteristics : СreatureСharacteristics, IDropable
 {
+    #region Объявление переменных 
     [SerializeField] private EnemyAnimatorController enemyAnimatorController;
     public PolygonCollider2D visionCollider;
     [Header("Свойство патруля")]
@@ -28,11 +29,14 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
     public Rigidbody2D rb;
     [Space]
     [Header("Выпадение предметов")]
+    [SerializeField] private bool isDroped = false;
     [SerializeField] private GameObject[] loot;
     [SerializeField] private Transform dropPosition;
 
 
     public override Image HealthBar => enemyHealthBar;
+    #endregion
+    #region Присвоение переменных в Start
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,13 +59,15 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
             Debug.LogError("Проверь присваивание компонентов для EnemyСharacteristics!");
         }
     }
+    #endregion
     public override void Update()
     {
         base.Update();
-        if(isAlive)
+        if (isAlive)
         {
             PatrolAndChase();
-        }else
+        }
+        else
         {
             PatrolStop();
             Debug.Log("Enemy die");
@@ -79,15 +85,20 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
             isRunning = false;
             isAlive = false;
             enemyAnimatorController.UpdateDeathBool(isAlive);
+            if (!isDroped)
+            {
+                DropLoot();
+                isDroped = true;
+            }
             Destroy(gameObject, 3f);
         }
     }
     #region Выпадение предметов из врага
     public void DropLoot()
     {
-        if(loot !=  null && loot.Length != 0)
+        if (loot != null && loot.Length != 0)
         {
-            int randomIndex  = Random.Range(0, loot.Length);
+            int randomIndex = Random.Range(0, loot.Length);
             GameObject lootPrefab = loot[randomIndex];
             if (lootPrefab != null)
             {
@@ -100,13 +111,8 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
             Debug.Log("Нет лута для выпадения");
         }
     }
-    private void OnDestroy()
-    {
-        if (!Application.isPlaying) return;
-        DropLoot();
-    }
-    #endregion
 
+    #endregion
     #region Урон при соприкосновении игрока с врагом
     private void OnCollisionEnter2D(Collision2D collision)
     {

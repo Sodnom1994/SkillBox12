@@ -11,6 +11,7 @@ public class HealthPotion : MonoBehaviour, ICollectable
     }
     private void Start()
     {
+        AutoDestroy();
         if (hpPotionrb != null)
         {
             Vector2 randomUpSemiSphereDirection = new(
@@ -41,5 +42,9 @@ public class HealthPotion : MonoBehaviour, ICollectable
             }
             Destroy(gameObject);
         }
+    }
+    public void AutoDestroy()
+    {
+        Destroy(gameObject, 5f);
     }
 }
