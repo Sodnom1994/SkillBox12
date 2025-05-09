@@ -81,7 +81,7 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
         }
         else
         {
-            Debug.Log($"Using deathAnimation");
+            //Debug.Log($"Using deathAnimation");
             isRunning = false;
             isAlive = false;
             enemyAnimatorController.UpdateDeathBool(isAlive);

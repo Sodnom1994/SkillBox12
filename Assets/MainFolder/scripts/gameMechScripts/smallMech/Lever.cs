@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject door;
+    
+    [SerializeField] private IInteractable linkedObject;
+    [SerializeField] private Animator animator;
+
+
     public void Interact()
     {
         Debug.Log("Рычаг активирован");
-        if (door != null)
+        if (linkedObject != null)
         {
-            var Interactable = door.GetComponent<IInteractable>();
-            Interactable?.Interact();
+            linkedObject?.Interact();
         }
     }
 }
