@@ -511,9 +511,9 @@ MonoBehaviour:
   facingRight: 0
   isRunning: 0
   enemyHealthBar: {fileID: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 629046075086420818}
   isDroped: 0
-  spawner: {fileID: 0}
+  spawner: {fileID: 9014341918149448039}
 --- !u!212 &4252240285916213602
 SpriteRenderer:
   m_ObjectHideFlags: 0
