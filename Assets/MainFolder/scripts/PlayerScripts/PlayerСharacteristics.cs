@@ -36,7 +36,7 @@ public class PlayerСharacteristics : СreatureСharacteristics
         base.Update();
     }
 
-    public override void CheckisAlive()
+    public override void CheckIsAlive()
     {
         if (currentHealth > 0f)
         {

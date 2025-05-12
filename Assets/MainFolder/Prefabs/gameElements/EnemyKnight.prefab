@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 6338589211465321229}
   - component: {fileID: 5772145680306840209}
   - component: {fileID: 7849077927833281465}
+  - component: {fileID: 8906638335582524486}
   m_Layer: 10
   m_Name: EnemyKnight
   m_TagString: Enemy
@@ -772,10 +773,8 @@ MonoBehaviour:
   isRunning: 0
   enemyHealthBar: {fileID: 5935649448046150055}
   rb: {fileID: 6338589211465321229}
-  loot:
-  - {fileID: 8443229524248257080, guid: 77884691b20fd4e4fa317b0f357cc4c6, type: 3}
-  - {fileID: 4697013705237995739, guid: 0793c152c00830b44aeffe5131ff15cc, type: 3}
-  dropPosition: {fileID: 7593058566889954068}
+  isDroped: 0
+  spawner: {fileID: 0}
   knightAttackCooldown: 2
   isAttacking: 0
   knightAttackBoxCollider2D: {fileID: 7161449202192139309}
@@ -792,3 +791,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resurrectionPlay: 0
+--- !u!114 &8906638335582524486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464232516008390925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8765ccd42fc31034996c559eabbb1385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootTable:
+  - {fileID: 11400000, guid: bc2ff67d34212c347930a43f38ac252c, type: 2}
+  - {fileID: 11400000, guid: b1bed0f955ed80f4983610368e5f965e, type: 2}
+  dropPosition: {fileID: 8074457279124850023}

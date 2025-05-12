@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(EnemyAnimatorController))]
-public class EnemyCharacteristics : СreatureСharacteristics, IDropable
+public class EnemyCharacteristics : СreatureСharacteristics
 {
     #region Объявление переменных 
     [SerializeField] private EnemyAnimatorController enemyAnimatorController;
@@ -30,10 +30,7 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
     [Space]
     [Header("Выпадение предметов")]
     [SerializeField] private bool isDroped = false;
-    [SerializeField] private GameObject[] loot;
-    [SerializeField] private Transform dropPosition;
-
-
+    [SerializeField] private LootSpawner spawner;
     public override Image HealthBar => enemyHealthBar;
     #endregion
     #region Присвоение переменных в Start
@@ -73,7 +70,7 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
             Debug.Log("Enemy die");
         }
     }
-    public override void CheckisAlive()
+    public override void CheckIsAlive()
     {
         if (currentHealth > 0f)
         {
@@ -84,35 +81,16 @@ public class EnemyCharacteristics : СreatureСharacteristics, IDropable
             //Debug.Log($"Using deathAnimation");
             isRunning = false;
             isAlive = false;
-            enemyAnimatorController.UpdateDeathBool(isAlive);
-            if (!isDroped)
+            if(!isDroped)
             {
-                DropLoot();
+                Debug.Log("Зпускаю выпадение лута");
+                EventBus.EnemyDied(this.gameObject);
                 isDroped = true;
             }
-            Destroy(gameObject, 3f);
+            enemyAnimatorController.UpdateDeathBool(isAlive);            
+            Destroy(gameObject, 2f);
         }
-    }
-    #region Выпадение предметов из врага
-    public void DropLoot()
-    {
-        if (loot != null && loot.Length != 0)
-        {
-            int randomIndex = Random.Range(0, loot.Length);
-            GameObject lootPrefab = loot[randomIndex];
-            if (lootPrefab != null)
-            {
-                Instantiate(lootPrefab, dropPosition.position, Quaternion.identity);
-                Debug.Log($"Выпало: {lootPrefab.name}");
-            }
-        }
-        else
-        {
-            Debug.Log("Нет лута для выпадения");
-        }
-    }
-
-    #endregion
+    }    
     #region Урон при соприкосновении игрока с врагом
     private void OnCollisionEnter2D(Collision2D collision)
     {

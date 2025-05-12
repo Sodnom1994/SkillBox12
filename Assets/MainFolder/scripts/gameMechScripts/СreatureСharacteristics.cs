@@ -28,7 +28,7 @@ public abstract class СreatureСharacteristics : MonoBehaviour
     }
     public virtual void Update()
     {
-        CheckisAlive();
+        CheckIsAlive();
     }
     public virtual void TakeDamage(float damage)
     {
@@ -36,7 +36,7 @@ public abstract class СreatureСharacteristics : MonoBehaviour
         HealthBar.fillAmount = currentHealth / maxHealth;
         
     }
-    public virtual void CheckisAlive()
+    public virtual void CheckIsAlive()
     {
         if (currentHealth > 0f)
         {

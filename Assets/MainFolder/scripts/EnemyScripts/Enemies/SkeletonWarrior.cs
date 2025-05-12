@@ -7,15 +7,15 @@ public class SkeletonWarrior : EnemyCharacteristics, IAttackable
     {
         swordCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
-    public override void CheckisAlive()
+    public override void CheckIsAlive()
     {
         if (currentHealth > 0f)
         {
-            base.CheckisAlive();
+            base.CheckIsAlive();
         }
         else
         {
-            base.CheckisAlive();
+            base.CheckIsAlive();
             //NoAnimationDeathHere
             Destroy(gameObject, 1f);
         }
