@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     [SerializeField] private PlayerAnimatorController playerAnimatorController;
     [SerializeField] private Player—haracteristics player—haracteristics;
-    //‰Ó·‡‚ÎˇÂÏ ÙÓÌ‡ËÍ
-    [Header("Light2D")]
-    [SerializeField] private Light2D viewLight;
 
     void Start()
     {
@@ -41,7 +38,7 @@ public class PlayerController : MonoBehaviour
         player—haracteristics = GetComponent<Player—haracteristics>();
         rb = GetComponent<Rigidbody2D>();
         playerAnimatorController = GetComponent<PlayerAnimatorController>();
-        viewLight = GetComponentInChildren<Light2D>();
+        
         if (rb == null || playerAnimatorController == null)
         {
             Debug.LogError("œÓ‚Â¸ ÔËÒ‚‡Ë‚‡ÌËÂ ÍÓÏÔÓÌÂÌÚÓ‚ ‰Îˇ PlayerController!");
@@ -88,20 +85,7 @@ public class PlayerController : MonoBehaviour
 
             if (isGrounded && ((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)))
             {
-                facingRight = !facingRight;
-                if (SceneManager.GetActiveScene().buildIndex > 0)
-                {
-                    Debug.Log($"SceneManager.GetActiveScene().buildIndex = {SceneManager.GetActiveScene().buildIndex}");
-                    viewLight.gameObject.SetActive(true);
-                    if (viewLight != null)
-                    {
-                        viewLight.transform.eulerAngles = facingRight ? new Vector3(0, 0, -90f) : new Vector3(0, 0, 90f);
-                    }
-                }
-                else if (viewLight != null)
-                {
-                    viewLight.gameObject.SetActive(false);
-                }
+                facingRight = !facingRight;               
                 playerAnimatorController.FlipSprite(facingRight);
                 if (TryGetComponent<PlayerInteract>(out var playerInteract))
                 {
