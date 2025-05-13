@@ -26510,6 +26510,7 @@ GameObject:
   - component: {fileID: 1356810649}
   - component: {fileID: 1356810650}
   - component: {fileID: 1356810651}
+  - component: {fileID: 1356810652}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
@@ -26665,10 +26666,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  enemyAnimatorController: {fileID: 0}
+  visionCollider: {fileID: 0}
+  playerTranform: {fileID: 0}
+  patrolDistance: 5
+  patrolSpeed: 0.3
+  AggroSpeed: 0.4
+  isChasing: 0
+  visionGameObject: {fileID: 0}
   enemyDamage: 50
   attackCooldown: 5
   nextAttackTime: 0
+  currentTransformX: 0
+  facingRight: 1
+  isRunning: 0
   enemyHealthBar: {fileID: 0}
+  rb: {fileID: 0}
+  isDroped: 0
+  spawner: {fileID: 0}
 --- !u!95 &1356810650
 Animator:
   serializedVersion: 7
@@ -26703,6 +26718,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b82b44ef32f3aa46b4b0429fa479187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resurrectionPlay: 0
+--- !u!70 &1356810652
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356810643}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &1361661551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8238902893134500163, guid: 7a25bfc9aa4d06643847917735ba05f2, type: 3}
@@ -30613,6 +30666,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!253 &1561949781
 BuoyancyEffector2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -30625,8 +30679,8 @@ BuoyancyEffector2D:
     m_Bits: 4294967295
   m_SurfaceLevel: -0.87
   m_Density: 2.7
-  m_LinearDrag: 20
-  m_AngularDrag: 5
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_FlowAngle: 0
   m_FlowMagnitude: 0
   m_FlowVariation: 0
@@ -34405,6 +34459,7 @@ GameObject:
   m_IsActive: 1
 --- !u!250 &1822934572
 PointEffector2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -34421,8 +34476,8 @@ PointEffector2D:
   m_ForceSource: 0
   m_ForceTarget: 0
   m_ForceMode: 0
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_LinearDamping: 0
+  m_AngularDamping: 0
 --- !u!4 &1822934573
 Transform:
   m_ObjectHideFlags: 0
@@ -41062,6 +41117,14 @@ PrefabInstance:
       propertyPath: playerHealthBar
       value: 
       objectReference: {fileID: 417954905}
+    - target: {fileID: 2911506669289625070, guid: 78b9d36e305de1d48b3d1be56376234b, type: 3}
+      propertyPath: near clip plane
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911506669289625070, guid: 78b9d36e305de1d48b3d1be56376234b, type: 3}
+      propertyPath: orthographic size
+      value: 1.88
+      objectReference: {fileID: 0}
     - target: {fileID: 3831785385362153424, guid: 78b9d36e305de1d48b3d1be56376234b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
