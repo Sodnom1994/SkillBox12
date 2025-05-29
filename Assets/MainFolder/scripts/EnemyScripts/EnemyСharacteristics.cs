@@ -2,35 +2,35 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-[RequireComponent(typeof(Rigidbody2D))]
+
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(EnemyAnimatorController))]
 public class EnemyCharacteristics : СreatureСharacteristics
 {
     #region Объявление переменных 
-    [SerializeField] private EnemyAnimatorController enemyAnimatorController;
+    [SerializeField] protected EnemyAnimatorController enemyAnimatorController;
     public PolygonCollider2D visionCollider;
     [Header("Свойство патруля")]
     public Transform playerTranform;
-    [SerializeField] private float patrolDistance = 5.0f;
-    [SerializeField] private float patrolSpeed = 0.3f;
-    [SerializeField] private float AggroSpeed = 0.4f;
-    [SerializeField] private bool isChasing = false;
-    [SerializeField] private GameObject visionGameObject;
+    [SerializeField] protected float patrolDistance = 3.0f;
+    [SerializeField] protected float patrolSpeed = 0.3f;
+    [SerializeField] protected float AggroSpeed = 0.4f;
+    [SerializeField] protected bool isChasing = false;
+    [SerializeField] protected GameObject visionGameObject;
     [Header("Свойство атаки при колизии")]
     public float enemyDamage;
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float nextAttackTime;
-    [Space]
-    [SerializeField] private float currentTransformX;
+    [SerializeField] protected float attackCooldown;
+    [SerializeField] protected float nextAttackTime;
+    [Space]          
+    [SerializeField] protected float currentTransformX;
     public bool facingRight = true;
     public bool isRunning = false;
     public Image enemyHealthBar;
     public Rigidbody2D rb;
     [Space]
     [Header("Выпадение предметов")]
-    [SerializeField] private bool isDroped = false;
-    [SerializeField] private LootSpawner spawner;
+    [SerializeField] protected bool isDroped = false;
+    [SerializeField] protected LootSpawner spawner;
     public override Image HealthBar => enemyHealthBar;
     #endregion
     #region Присвоение переменных в Start
@@ -67,7 +67,7 @@ public class EnemyCharacteristics : СreatureСharacteristics
         else
         {
             PatrolStop();
-            Debug.Log("Enemy die");
+            //Debug.Log("Enemy die");
         }
     }
     public override void CheckIsAlive()
@@ -83,7 +83,7 @@ public class EnemyCharacteristics : СreatureСharacteristics
             isAlive = false;
             if(!isDroped)
             {
-                Debug.Log("Зпускаю выпадение лута");
+                Debug.Log("Запускаю выпадение лута");
                 EventBus.EnemyDied(this.gameObject);
                 isDroped = true;
             }
@@ -168,7 +168,10 @@ public class EnemyCharacteristics : СreatureСharacteristics
     }
     private void PatrolStop()
     {
-        rb.linearVelocityX = 0;
+        if(gameObject)
+        {
+            rb.linearVelocityX = 0;
+        }
     }
     public virtual void VisionColiTransform(float viewDirection)
     {

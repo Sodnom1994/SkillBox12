@@ -24,7 +24,6 @@ public class PlayerСharacteristics : СreatureСharacteristics
             Destroy(gameObject);
             return;
         }
-
     }
     private void Start()
     {

@@ -34,7 +34,8 @@ public abstract class СreatureСharacteristics : MonoBehaviour
     {
         currentHealth -= damage;
         HealthBar.fillAmount = currentHealth / maxHealth;
-        
+        Debug.Log($"{this.name} take damage {damage}");
+
     }
     public virtual void CheckIsAlive()
     {
