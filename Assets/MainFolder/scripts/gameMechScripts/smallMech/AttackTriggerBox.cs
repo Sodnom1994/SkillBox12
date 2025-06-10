@@ -11,10 +11,10 @@ public class AttackTriggerBox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"AttackCoroutine = {AttackCoroutine}");
+        //Debug.Log($"AttackCoroutine = {AttackCoroutine}");
         if (collision.CompareTag("Player") && AttackCoroutine == null && knight.IsAlive)
         {
-            Debug.Log("AttackingPlayer");
+            //Debug.Log("AttackingPlayer");
             AttackCoroutine = StartCoroutine(AttackRoutine());
         }
     }

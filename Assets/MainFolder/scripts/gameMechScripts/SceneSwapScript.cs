@@ -32,8 +32,8 @@ public class SceneSwapScript : MonoBehaviour
 
         int totalScenes = SceneManager.sceneCountInBuildSettings;
 
-        Debug.Log($"currentSceneIndex = {currentSceneIndex}");
-        Debug.Log($"nextSceneIndex = {nextSceneIndex}");
+        //Debug.Log($"currentSceneIndex = {currentSceneIndex}");
+        //Debug.Log($"nextSceneIndex = {nextSceneIndex}");
 
         if (nextSceneIndex >= 0 && nextSceneIndex < totalScenes)
         {

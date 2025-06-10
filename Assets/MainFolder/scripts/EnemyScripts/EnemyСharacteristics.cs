@@ -83,7 +83,7 @@ public class EnemyCharacteristics : СreatureСharacteristics
             isAlive = false;
             if(!isDroped)
             {
-                Debug.Log("Запускаю выпадение лута");
+                //Debug.Log("Запускаю выпадение лута");
                 EventBus.EnemyDied(this.gameObject);
                 isDroped = true;
             }
@@ -114,7 +114,7 @@ public class EnemyCharacteristics : СreatureСharacteristics
         }
         else
         {
-            Debug.Log("EnemyChasingPlayer");
+            //Debug.Log("EnemyChasingPlayer");
             PatrolStop();
             ChasePlayer();
         }
@@ -168,7 +168,7 @@ public class EnemyCharacteristics : СreatureСharacteristics
     }
     private void PatrolStop()
     {
-        if(gameObject)
+        if(gameObject && rb.bodyType != RigidbodyType2D.Static)
         {
             rb.linearVelocityX = 0;
         }

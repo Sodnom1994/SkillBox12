@@ -22,7 +22,7 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (!isOpening)
         {
-            Debug.Log("Дверь начинает открываться");
+            //Debug.Log("Дверь начинает открываться");
             isOpening = true;
             StartCoroutine(OpenAndDestroy());
         }

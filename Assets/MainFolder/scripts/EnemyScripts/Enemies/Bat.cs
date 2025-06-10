@@ -18,33 +18,35 @@ public class Bat : EnemyCharacteristics
     }
     public override void Start()
     {
+       
+            enemyAnimatorController = GetComponent<EnemyAnimatorController>();
+            visionCollider = GetComponentInChildren<PolygonCollider2D>();
+            Image[] images = GetComponentsInChildren<Image>();
 
-        enemyAnimatorController = GetComponent<EnemyAnimatorController>();
-        visionCollider = GetComponentInChildren<PolygonCollider2D>();
-        Image[] images = GetComponentsInChildren<Image>();
+            foreach (Image image in images)
+            {
+                if (image.name == "EnemyHealthBar")
+                    enemyHealthBar = image;
+                break;
+            }
 
-        foreach (Image image in images)
-        {
-            if (image.name == "EnemyHealthBar")
-                enemyHealthBar = image;
-            break;
-        }
-        
-        {
-            transform.DOPath(new Vector3[]
-                    {
+            {
+                transform.DOPath(new Vector3[]
+                        {
             patrolPath[0].position,
             patrolPath[1].position,
             patrolPath[2].position,
             patrolPath[3].position,
-                        }, moveDuration,
-                        PathType.CatmullRom,
-                        PathMode.Sidescroller2D, 10)
-                        .SetOptions(AxisConstraint.None)
-                        .SetLoops(-1, loopType)
-                        .SetEase(Ease.Linear);
-        }
+                            }, moveDuration,
+                            PathType.CatmullRom,
+                            PathMode.Sidescroller2D, 10)
+                            .SetOptions(AxisConstraint.None)
+                            .SetLoops(-1, loopType)
+                            .SetEase(Ease.Linear);
+            }
+
         
+
 
     }
     public override void Update()
@@ -53,25 +55,29 @@ public class Bat : EnemyCharacteristics
     }
     public override void CheckIsAlive()
     {
-        if (currentHealth > 0f)
+        if(gameObject.activeSelf)
         {
-            isAlive = true;
-        }
-        else
-        {
-            //Debug.Log($"Using deathAnimation");
-            isRunning = false;
-            isAlive = false;
-            if (!isDroped)
+            if (currentHealth > 0f)
             {
-                Debug.Log("«пускаю выпадение лута");
-                EventBus.EnemyDied(this.gameObject);
-                isDroped = true;
+                isAlive = true;
             }
-            enemyAnimatorController.UpdateDeathBool(isAlive);
-            transform.DOKill();
-            Destroy(gameObject);
+            else
+            {
+                //Debug.Log($"Using deathAnimation");
+                isRunning = false;
+                isAlive = false;
+                if (!isDroped)
+                {
+                    Debug.Log("«пускаю выпадение лута");
+                    EventBus.EnemyDied(this.gameObject);
+                    isDroped = true;
+                }
+                enemyAnimatorController.UpdateDeathBool(isAlive);
+                transform.DOKill();
+                Destroy(gameObject);
+            }
         }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class СreatureСharacteristics : MonoBehaviour
+public abstract class СreatureСharacteristics : MonoBehaviour , IDamageable
 {
     [Header("Свойство здоровья")]
     [SerializeField] protected float maxHealth;
@@ -34,7 +34,7 @@ public abstract class СreatureСharacteristics : MonoBehaviour
     {
         currentHealth -= damage;
         HealthBar.fillAmount = currentHealth / maxHealth;
-        Debug.Log($"{this.name} take damage {damage}");
+        //Debug.Log($"{this.name} take damage {damage}");
 
     }
     public virtual void CheckIsAlive()

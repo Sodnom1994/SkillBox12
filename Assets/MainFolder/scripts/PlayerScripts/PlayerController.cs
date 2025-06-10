@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
     //Параметры скорости передвижения и силы прыжка Игрока
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5.0f;
@@ -31,6 +32,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerAnimatorController playerAnimatorController;
     [SerializeField] private PlayerСharacteristics playerСharacteristics;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
 

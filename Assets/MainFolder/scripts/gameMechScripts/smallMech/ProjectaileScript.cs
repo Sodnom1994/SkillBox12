@@ -42,14 +42,13 @@ public class ProjectaileScript : MonoBehaviour
         //Debug.Log($"ColisionDetected" + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Debug.Log("Projectile get the enemy");
-            collision.gameObject.TryGetComponent(out —reature—haracteristics characteristics);
-            if (characteristics != null)
+            if (collision.TryGetComponent(out IDamageable damageable))
             {
-                characteristics.TakeDamage(projectileDamage);
-                //Debug.Log("takeit");
+                damageable.TakeDamage(projectileDamage);
             }
+
             Destroy(gameObject);
+
         }
         else
         {

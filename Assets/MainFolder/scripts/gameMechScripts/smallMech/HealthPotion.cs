@@ -27,7 +27,7 @@ public class HealthPotion : MonoBehaviour, ICollectable
         if (PlayerСharacteristics.Instance != null)
         {
             PlayerСharacteristics.Instance.Heal(healAmount);
-            Debug.Log($"Игрок восстановил {healAmount} здоровья");
+            //Debug.Log($"Игрок восстановил {healAmount} здоровья");
             gameObject.SetActive(false);
         }
 

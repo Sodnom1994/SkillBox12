@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, interactRange);
             if (hit.collider != null)
             {
-                Debug.Log($"Hit collider: {hit.collider.name}");
+                //Debug.Log($"Hit collider: {hit.collider.name}");
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 interactable?.Interact();
             }

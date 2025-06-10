@@ -46,8 +46,8 @@ public class Coin : MonoBehaviour, ICollectable
     public void Collect()
     {
         //Debug.Log("Монетка поднята");
-        gameObject.SetActive(false);
-
+        ScoreScript.Instance.AddScore(1);
+        gameObject.SetActive(false);        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
