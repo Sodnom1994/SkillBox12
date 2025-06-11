@@ -393,7 +393,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3872147934028182511}
         m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
-        m_MethodName: LoadFirstScene
+        m_MethodName: LoadCurrentScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3153613984329326235
 RectTransform:
   m_ObjectHideFlags: 0
